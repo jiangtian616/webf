@@ -17,6 +17,7 @@ import 'package:flutter/animation.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter/src/services/predictive_back_event.dart';
 import 'package:flutter/widgets.dart'
     show RouteInformation, WidgetsBinding, WidgetsBindingObserver, AnimationController, BuildContext, View;
 import 'package:webf/css.dart';
@@ -815,6 +816,20 @@ class WebFViewController implements WidgetsBindingObserver {
   Future<ui.AppExitResponse> didRequestAppExit() async {
     return ui.AppExitResponse.exit;
   }
+
+  @override
+  void handleCancelBackGesture() {}
+
+  @override
+  void handleCommitBackGesture() {}
+
+  @override
+  bool handleStartBackGesture(PredictiveBackEvent backEvent) {
+    return false;
+  }
+
+  @override
+  void handleUpdateBackGestureProgress(PredictiveBackEvent backEvent) {}
 }
 
 // An controller designed to control kraken's functional modules.
